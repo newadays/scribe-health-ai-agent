@@ -1,0 +1,12 @@
+Doctor: Hi, and who do we have here today?
+Mother: This is Emma, she's 6 years old. She's had a fever since last night and says her ear hurts.
+Doctor: How high has the fever been?
+Mother: It was 38.9 last night. I gave her some children's Tylenol around 10pm.
+Doctor: Any vomiting, rash, or trouble breathing?
+Mother: No, just the ear pain and she's been a bit fussy and not eating much.
+Doctor: Let me take a look. Her right eardrum is red and bulging. Left ear looks normal. Throat is a little red, lungs are clear.
+Doctor: Her weight today is 21 kilograms and temperature is 38.4.
+Doctor: This looks like a right-sided acute otitis media. I'm going to prescribe amoxicillin at 45 milligrams per kilogram per day, split into two doses, for 10 days.
+Doctor: You can keep giving acetaminophen for the fever and pain. Call us if the fever lasts more than 48 hours on the antibiotic or if she gets worse.
+Mother: Okay, thank you doctor.
+Doctor: Also, her immunizations are up to date, so nothing needed there today.

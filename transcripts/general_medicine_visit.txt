@@ -1,0 +1,12 @@
+Doctor: Good morning, Mr. Johnson. What brings you in today?
+Patient: Hi doctor. I've had a headache almost every afternoon for the past two weeks, and I feel tired all the time.
+Doctor: Any blurred vision, nausea, or chest pain?
+Patient: No, none of that. Just the headaches and fatigue.
+Doctor: How is your sleep?
+Patient: Maybe five hours a night. Work has been stressful.
+Doctor: Are you taking any medications?
+Patient: Just ibuprofen when the headache gets bad, maybe three or four times a week.
+Doctor: Okay. Your blood pressure today is 148 over 92, pulse 78. You're 178 centimetres and 94 kilograms.
+Doctor: Your blood pressure is elevated. I'd like to recheck it in two weeks, and in the meantime cut back on the ibuprofen and aim for seven hours of sleep.
+Doctor: I'll also order a basic metabolic panel and a lipid panel. If the pressure is still high at follow-up we'll talk about starting lisinopril.
+Patient: Sounds good, thank you.
