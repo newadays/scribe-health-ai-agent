@@ -3,7 +3,7 @@
 A small, runnable tutorial showing how to build an agentic medical scribe with
 [LangGraph](https://github.com/langchain-ai/langgraph). It takes the text
 transcript of a clinical encounter, routes it to a specialty agent, and
-generates a SOAP note using tools. You can get the context on using Jev instead of an LLM as a Judge in my article [here](https://medium.com/@gbenga-awodokun/building-clinical-ai-agents-with-langchain-and-jev-decision-healthcare-trustworthy-ai-lab-v2-1b81e271f1c9).
+generates a SOAP note using tools. You can get the context on using Jev instead of an LLM as a Judge in my article [here](https://medium.com/@gbenga-awodokun/building-clinical-ai-agents-with-langchain-and-jev-decision-healthcare-trustworthy-ai-lab-v2-1b81e271f1c9). Requires a Jev API and OpenAI to compare.
 
 ![Agentic flow](agentic_medical_scribe.png)
 
