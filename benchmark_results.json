@@ -1,0 +1,932 @@
+{
+  "overall": {
+    "llm": {
+      "accuracy": 0.8666666666666667,
+      "consistency": 0.9666666666666667,
+      "median_latency_s": 1.1668296250281855,
+      "p95_latency_s": 1.6217012498527765,
+      "mean_input_tokens": 1019,
+      "mean_output_tokens": 83.5,
+      "mean_cost_usd": 0.00020295,
+      "cost_per_1000_usd": 0.20295
+    },
+    "jev": {
+      "accuracy": 0.8666666666666667,
+      "consistency": 0.9666666666666667,
+      "median_latency_s": 0.13049316650722176,
+      "p95_latency_s": 0.20834070816636086,
+      "mean_input_tokens": 1082.5,
+      "mean_output_tokens": 72.66666666666667,
+      "mean_cost_usd": 4.5465000000000006e-05,
+      "cost_per_1000_usd": 0.045465000000000005
+    }
+  },
+  "cases": {
+    "llm": {
+      "transcripts/pediatrics_visit.txt": {
+        "runs": [
+          {
+            "input_tokens": 690,
+            "output_tokens": 88,
+            "cost_usd": 0.0001563,
+            "route": "pediatrics",
+            "specialty": "pediatrics",
+            "confidence": 1.0,
+            "needs_review": 0.0,
+            "acuity": 1.0,
+            "latency_s": 1.6217012498527765
+          },
+          {
+            "input_tokens": 690,
+            "output_tokens": 88,
+            "cost_usd": 0.0001563,
+            "route": "pediatrics",
+            "specialty": "pediatrics",
+            "confidence": 1.0,
+            "needs_review": 0.0,
+            "acuity": 1.0,
+            "latency_s": 1.340213250136003
+          },
+          {
+            "input_tokens": 690,
+            "output_tokens": 89,
+            "cost_usd": 0.00015690000000000002,
+            "route": "pediatrics",
+            "specialty": "pediatrics",
+            "confidence": 1.0,
+            "needs_review": 0.0,
+            "acuity": 1.0,
+            "latency_s": 1.1443296670913696
+          },
+          {
+            "input_tokens": 690,
+            "output_tokens": 89,
+            "cost_usd": 0.00015690000000000002,
+            "route": "pediatrics",
+            "specialty": "pediatrics",
+            "confidence": 1.0,
+            "needs_review": 0.0,
+            "acuity": 1.0,
+            "latency_s": 1.1980380001477897
+          },
+          {
+            "input_tokens": 690,
+            "output_tokens": 87,
+            "cost_usd": 0.0001557,
+            "route": "pediatrics",
+            "specialty": "pediatrics",
+            "confidence": 1.0,
+            "needs_review": 0.0,
+            "acuity": 1.0,
+            "latency_s": 1.3088842909783125
+          }
+        ],
+        "summary": {
+          "expected": "pediatrics",
+          "majority_route": "pediatrics",
+          "accuracy": 1.0,
+          "consistency": 1.0,
+          "mean_confidence": 1.0,
+          "mean_needs_review": 0.0,
+          "mean_acuity": 1.0,
+          "median_latency_s": 1.3088842909783125,
+          "mean_input_tokens": 690,
+          "mean_output_tokens": 88.2,
+          "mean_cost_usd": 0.00015642,
+          "routes": {
+            "pediatrics": 5
+          }
+        }
+      },
+      "transcripts/general_medicine_visit.txt": {
+        "runs": [
+          {
+            "input_tokens": 655,
+            "output_tokens": 91,
+            "cost_usd": 0.00015285,
+            "route": "general_medicine",
+            "specialty": "general_medicine",
+            "confidence": 1.0,
+            "needs_review": 0.0,
+            "acuity": 1.0,
+            "latency_s": 1.2738662499468774
+          },
+          {
+            "input_tokens": 655,
+            "output_tokens": 91,
+            "cost_usd": 0.00015285,
+            "route": "general_medicine",
+            "specialty": "general_medicine",
+            "confidence": 1.0,
+            "needs_review": 0.0,
+            "acuity": 1.0,
+            "latency_s": 1.2472941670566797
+          },
+          {
+            "input_tokens": 655,
+            "output_tokens": 91,
+            "cost_usd": 0.00015285,
+            "route": "general_medicine",
+            "specialty": "general_medicine",
+            "confidence": 1.0,
+            "needs_review": 0.0,
+            "acuity": 1.0,
+            "latency_s": 1.3155642501078546
+          },
+          {
+            "input_tokens": 655,
+            "output_tokens": 91,
+            "cost_usd": 0.00015285,
+            "route": "general_medicine",
+            "specialty": "general_medicine",
+            "confidence": 1.0,
+            "needs_review": 0.0,
+            "acuity": 1.0,
+            "latency_s": 1.0986648329999298
+          },
+          {
+            "input_tokens": 655,
+            "output_tokens": 91,
+            "cost_usd": 0.00015285,
+            "route": "general_medicine",
+            "specialty": "general_medicine",
+            "confidence": 1.0,
+            "needs_review": 0.0,
+            "acuity": 1.0,
+            "latency_s": 1.1893295829650015
+          }
+        ],
+        "summary": {
+          "expected": "general_medicine",
+          "majority_route": "general_medicine",
+          "accuracy": 1.0,
+          "consistency": 1.0,
+          "mean_confidence": 1.0,
+          "mean_needs_review": 0.0,
+          "mean_acuity": 1.0,
+          "median_latency_s": 1.2472941670566797,
+          "mean_input_tokens": 655,
+          "mean_output_tokens": 91,
+          "mean_cost_usd": 0.00015285,
+          "routes": {
+            "general_medicine": 5
+          }
+        }
+      },
+      "transcripts/ambiguous_note.txt": {
+        "runs": [
+          {
+            "input_tokens": 545,
+            "output_tokens": 58,
+            "cost_usd": 0.00011655,
+            "route": "human_review",
+            "specialty": "general_medicine",
+            "confidence": 1.0,
+            "needs_review": 1.0,
+            "acuity": 0.0,
+            "latency_s": 1.0971650830470026
+          },
+          {
+            "input_tokens": 545,
+            "output_tokens": 58,
+            "cost_usd": 0.00011655,
+            "route": "human_review",
+            "specialty": "general_medicine",
+            "confidence": 1.0,
+            "needs_review": 1.0,
+            "acuity": 0.0,
+            "latency_s": 0.9117657078895718
+          },
+          {
+            "input_tokens": 545,
+            "output_tokens": 58,
+            "cost_usd": 0.00011655,
+            "route": "human_review",
+            "specialty": "general_medicine",
+            "confidence": 1.0,
+            "needs_review": 1.0,
+            "acuity": 0.0,
+            "latency_s": 1.141265041893348
+          },
+          {
+            "input_tokens": 545,
+            "output_tokens": 58,
+            "cost_usd": 0.00011655,
+            "route": "human_review",
+            "specialty": "general_medicine",
+            "confidence": 1.0,
+            "needs_review": 1.0,
+            "acuity": 0.0,
+            "latency_s": 1.0466864998452365
+          },
+          {
+            "input_tokens": 545,
+            "output_tokens": 58,
+            "cost_usd": 0.00011655,
+            "route": "human_review",
+            "specialty": "general_medicine",
+            "confidence": 1.0,
+            "needs_review": 1.0,
+            "acuity": 0.0,
+            "latency_s": 1.049236958147958
+          }
+        ],
+        "summary": {
+          "expected": "human_review",
+          "majority_route": "human_review",
+          "accuracy": 1.0,
+          "consistency": 1.0,
+          "mean_confidence": 1.0,
+          "mean_needs_review": 1.0,
+          "mean_acuity": 0.0,
+          "median_latency_s": 1.049236958147958,
+          "mean_input_tokens": 545,
+          "mean_output_tokens": 58,
+          "mean_cost_usd": 0.00011655,
+          "routes": {
+            "human_review": 5
+          }
+        }
+      },
+      "sample_transcript/general_medicine.txt": {
+        "runs": [
+          {
+            "input_tokens": 3097,
+            "output_tokens": 106,
+            "cost_usd": 0.00052815,
+            "route": "general_medicine",
+            "specialty": "general_medicine",
+            "confidence": 1.0,
+            "needs_review": 0.0,
+            "acuity": 1.0,
+            "latency_s": 1.3167805830016732
+          },
+          {
+            "input_tokens": 3097,
+            "output_tokens": 122,
+            "cost_usd": 0.00053775,
+            "route": "general_medicine",
+            "specialty": "general_medicine",
+            "confidence": 1.0,
+            "needs_review": 0.0,
+            "acuity": 1.0,
+            "latency_s": 1.3370920410379767
+          },
+          {
+            "input_tokens": 3097,
+            "output_tokens": 122,
+            "cost_usd": 0.00053775,
+            "route": "general_medicine",
+            "specialty": "general_medicine",
+            "confidence": 1.0,
+            "needs_review": 0.0,
+            "acuity": 1.0,
+            "latency_s": 1.3283160419669002
+          },
+          {
+            "input_tokens": 3097,
+            "output_tokens": 124,
+            "cost_usd": 0.00053895,
+            "route": "general_medicine",
+            "specialty": "general_medicine",
+            "confidence": 1.0,
+            "needs_review": 0.0,
+            "acuity": 1.0,
+            "latency_s": 1.8021625829860568
+          },
+          {
+            "input_tokens": 3097,
+            "output_tokens": 112,
+            "cost_usd": 0.00053175,
+            "route": "general_medicine",
+            "specialty": "general_medicine",
+            "confidence": 1.0,
+            "needs_review": 0.0,
+            "acuity": 1.0,
+            "latency_s": 1.2861893330700696
+          }
+        ],
+        "summary": {
+          "expected": "general_medicine",
+          "majority_route": "general_medicine",
+          "accuracy": 1.0,
+          "consistency": 1.0,
+          "mean_confidence": 1.0,
+          "mean_needs_review": 0.0,
+          "mean_acuity": 1.0,
+          "median_latency_s": 1.3283160419669002,
+          "mean_input_tokens": 3097,
+          "mean_output_tokens": 117.2,
+          "mean_cost_usd": 0.00053487,
+          "routes": {
+            "general_medicine": 5
+          }
+        }
+      },
+      "transcripts/teen_visit.txt": {
+        "runs": [
+          {
+            "input_tokens": 661,
+            "output_tokens": 87,
+            "cost_usd": 0.00015135,
+            "route": "pediatrics",
+            "specialty": "pediatrics",
+            "confidence": 0.9,
+            "needs_review": 0.0,
+            "acuity": 0.0,
+            "latency_s": 1.0751873338595033
+          },
+          {
+            "input_tokens": 661,
+            "output_tokens": 95,
+            "cost_usd": 0.00015614999999999997,
+            "route": "pediatrics",
+            "specialty": "pediatrics",
+            "confidence": 0.9,
+            "needs_review": 0.0,
+            "acuity": 0.0,
+            "latency_s": 1.0909255831502378
+          },
+          {
+            "input_tokens": 661,
+            "output_tokens": 79,
+            "cost_usd": 0.00014654999999999998,
+            "route": "pediatrics",
+            "specialty": "pediatrics",
+            "confidence": 0.9,
+            "needs_review": 0.0,
+            "acuity": 0.0,
+            "latency_s": 1.0889175420161337
+          },
+          {
+            "input_tokens": 661,
+            "output_tokens": 98,
+            "cost_usd": 0.00015795,
+            "route": "pediatrics",
+            "specialty": "pediatrics",
+            "confidence": 0.9,
+            "needs_review": 0.0,
+            "acuity": 0.0,
+            "latency_s": 1.9789571668952703
+          },
+          {
+            "input_tokens": 661,
+            "output_tokens": 79,
+            "cost_usd": 0.00014654999999999998,
+            "route": "pediatrics",
+            "specialty": "pediatrics",
+            "confidence": 0.9,
+            "needs_review": 0.0,
+            "acuity": 0.0,
+            "latency_s": 1.048477667151019
+          }
+        ],
+        "summary": {
+          "expected": "pediatrics",
+          "majority_route": "pediatrics",
+          "accuracy": 1.0,
+          "consistency": 1.0,
+          "mean_confidence": 0.9,
+          "mean_needs_review": 0.0,
+          "mean_acuity": 0.0,
+          "median_latency_s": 1.0889175420161337,
+          "mean_input_tokens": 661,
+          "mean_output_tokens": 87.6,
+          "mean_cost_usd": 0.00015171,
+          "routes": {
+            "pediatrics": 5
+          }
+        }
+      },
+      "transcripts/truncated_visit.txt": {
+        "runs": [
+          {
+            "input_tokens": 466,
+            "output_tokens": 59,
+            "cost_usd": 0.00010529999999999998,
+            "route": "general_medicine",
+            "specialty": "general_medicine",
+            "confidence": 0.9,
+            "needs_review": 0.0,
+            "acuity": 1.0,
+            "latency_s": 0.9738902498502284
+          },
+          {
+            "input_tokens": 466,
+            "output_tokens": 58,
+            "cost_usd": 0.00010469999999999998,
+            "route": "human_review",
+            "specialty": "general_medicine",
+            "confidence": 0.9,
+            "needs_review": 1.0,
+            "acuity": 0.0,
+            "latency_s": 0.8879521670751274
+          },
+          {
+            "input_tokens": 466,
+            "output_tokens": 59,
+            "cost_usd": 0.00010529999999999998,
+            "route": "general_medicine",
+            "specialty": "general_medicine",
+            "confidence": 0.9,
+            "needs_review": 0.0,
+            "acuity": 1.0,
+            "latency_s": 0.887828541919589
+          },
+          {
+            "input_tokens": 466,
+            "output_tokens": 58,
+            "cost_usd": 0.00010469999999999998,
+            "route": "general_medicine",
+            "specialty": "general_medicine",
+            "confidence": 0.9,
+            "needs_review": 0.0,
+            "acuity": 1.0,
+            "latency_s": 1.3237792500294745
+          },
+          {
+            "input_tokens": 466,
+            "output_tokens": 61,
+            "cost_usd": 0.0001065,
+            "route": "general_medicine",
+            "specialty": "general_medicine",
+            "confidence": 0.9,
+            "needs_review": 0.0,
+            "acuity": 0.0,
+            "latency_s": 0.908392250072211
+          }
+        ],
+        "summary": {
+          "expected": "human_review",
+          "majority_route": "general_medicine",
+          "accuracy": 0.2,
+          "consistency": 0.8,
+          "mean_confidence": 0.9,
+          "mean_needs_review": 0.2,
+          "mean_acuity": 0.6,
+          "median_latency_s": 0.908392250072211,
+          "mean_input_tokens": 466,
+          "mean_output_tokens": 59,
+          "mean_cost_usd": 0.00010529999999999998,
+          "routes": {
+            "general_medicine": 4,
+            "human_review": 1
+          }
+        }
+      }
+    },
+    "jev": {
+      "transcripts/pediatrics_visit.txt": {
+        "runs": [
+          {
+            "input_tokens": 725,
+            "output_tokens": 72,
+            "cost_usd": 3.045e-05,
+            "route": "pediatrics",
+            "specialty": "pediatrics",
+            "confidence": 1.0,
+            "needs_review": 0.06,
+            "acuity": 1.03,
+            "latency_s": 0.20834070816636086
+          },
+          {
+            "input_tokens": 725,
+            "output_tokens": 72,
+            "cost_usd": 3.045e-05,
+            "route": "pediatrics",
+            "specialty": "pediatrics",
+            "confidence": 1.0,
+            "needs_review": 0.07,
+            "acuity": 0.99,
+            "latency_s": 0.22979862499050796
+          },
+          {
+            "input_tokens": 725,
+            "output_tokens": 72,
+            "cost_usd": 3.045e-05,
+            "route": "pediatrics",
+            "specialty": "pediatrics",
+            "confidence": 1.0,
+            "needs_review": 0.06,
+            "acuity": 0.99,
+            "latency_s": 0.11254170793108642
+          },
+          {
+            "input_tokens": 725,
+            "output_tokens": 72,
+            "cost_usd": 3.045e-05,
+            "route": "pediatrics",
+            "specialty": "pediatrics",
+            "confidence": 1.0,
+            "needs_review": 0.07,
+            "acuity": 1.03,
+            "latency_s": 0.12325529102236032
+          },
+          {
+            "input_tokens": 725,
+            "output_tokens": 72,
+            "cost_usd": 3.045e-05,
+            "route": "pediatrics",
+            "specialty": "pediatrics",
+            "confidence": 1.0,
+            "needs_review": 0.06,
+            "acuity": 1.03,
+            "latency_s": 0.12209629104472697
+          }
+        ],
+        "summary": {
+          "expected": "pediatrics",
+          "majority_route": "pediatrics",
+          "accuracy": 1.0,
+          "consistency": 1.0,
+          "mean_confidence": 1.0,
+          "mean_needs_review": 0.064,
+          "mean_acuity": 1.014,
+          "median_latency_s": 0.12325529102236032,
+          "mean_input_tokens": 725,
+          "mean_output_tokens": 72,
+          "mean_cost_usd": 3.045e-05,
+          "routes": {
+            "pediatrics": 5
+          }
+        }
+      },
+      "transcripts/general_medicine_visit.txt": {
+        "runs": [
+          {
+            "input_tokens": 690,
+            "output_tokens": 73,
+            "cost_usd": 2.898e-05,
+            "route": "general_medicine",
+            "specialty": "general_medicine",
+            "confidence": 1.0,
+            "needs_review": 0.05,
+            "acuity": 0.05,
+            "latency_s": 0.15146141592413187
+          },
+          {
+            "input_tokens": 690,
+            "output_tokens": 73,
+            "cost_usd": 2.898e-05,
+            "route": "general_medicine",
+            "specialty": "general_medicine",
+            "confidence": 1.0,
+            "needs_review": 0.05,
+            "acuity": 0.05,
+            "latency_s": 0.17749445815570652
+          },
+          {
+            "input_tokens": 690,
+            "output_tokens": 73,
+            "cost_usd": 2.898e-05,
+            "route": "general_medicine",
+            "specialty": "general_medicine",
+            "confidence": 1.0,
+            "needs_review": 0.05,
+            "acuity": 0.05,
+            "latency_s": 0.22393904090858996
+          },
+          {
+            "input_tokens": 690,
+            "output_tokens": 73,
+            "cost_usd": 2.898e-05,
+            "route": "general_medicine",
+            "specialty": "general_medicine",
+            "confidence": 1.0,
+            "needs_review": 0.05,
+            "acuity": 0.06,
+            "latency_s": 0.1200615840498358
+          },
+          {
+            "input_tokens": 690,
+            "output_tokens": 73,
+            "cost_usd": 2.898e-05,
+            "route": "general_medicine",
+            "specialty": "general_medicine",
+            "confidence": 1.0,
+            "needs_review": 0.05,
+            "acuity": 0.07,
+            "latency_s": 0.17920820810832083
+          }
+        ],
+        "summary": {
+          "expected": "general_medicine",
+          "majority_route": "general_medicine",
+          "accuracy": 1.0,
+          "consistency": 1.0,
+          "mean_confidence": 1.0,
+          "mean_needs_review": 0.05,
+          "mean_acuity": 0.056,
+          "median_latency_s": 0.17749445815570652,
+          "mean_input_tokens": 690,
+          "mean_output_tokens": 73,
+          "mean_cost_usd": 2.898e-05,
+          "routes": {
+            "general_medicine": 5
+          }
+        }
+      },
+      "transcripts/ambiguous_note.txt": {
+        "runs": [
+          {
+            "input_tokens": 574,
+            "output_tokens": 73,
+            "cost_usd": 2.4108e-05,
+            "route": "human_review",
+            "specialty": "general_medicine",
+            "confidence": 1.0,
+            "needs_review": 0.96,
+            "acuity": 0.01,
+            "latency_s": 0.111617041984573
+          },
+          {
+            "input_tokens": 574,
+            "output_tokens": 73,
+            "cost_usd": 2.4108e-05,
+            "route": "human_review",
+            "specialty": "general_medicine",
+            "confidence": 1.0,
+            "needs_review": 0.96,
+            "acuity": 0.01,
+            "latency_s": 0.12380516598932445
+          },
+          {
+            "input_tokens": 574,
+            "output_tokens": 73,
+            "cost_usd": 2.4108e-05,
+            "route": "human_review",
+            "specialty": "general_medicine",
+            "confidence": 1.0,
+            "needs_review": 0.95,
+            "acuity": 0.01,
+            "latency_s": 0.11911504087038338
+          },
+          {
+            "input_tokens": 574,
+            "output_tokens": 73,
+            "cost_usd": 2.4108e-05,
+            "route": "human_review",
+            "specialty": "general_medicine",
+            "confidence": 1.0,
+            "needs_review": 0.96,
+            "acuity": 0.01,
+            "latency_s": 0.16526537504978478
+          },
+          {
+            "input_tokens": 574,
+            "output_tokens": 73,
+            "cost_usd": 2.4108e-05,
+            "route": "human_review",
+            "specialty": "general_medicine",
+            "confidence": 1.0,
+            "needs_review": 0.96,
+            "acuity": 0.01,
+            "latency_s": 0.11236870917491615
+          }
+        ],
+        "summary": {
+          "expected": "human_review",
+          "majority_route": "human_review",
+          "accuracy": 1.0,
+          "consistency": 1.0,
+          "mean_confidence": 1.0,
+          "mean_needs_review": 0.958,
+          "mean_acuity": 0.01,
+          "median_latency_s": 0.11911504087038338,
+          "mean_input_tokens": 574,
+          "mean_output_tokens": 73,
+          "mean_cost_usd": 2.4108e-05,
+          "routes": {
+            "human_review": 5
+          }
+        }
+      },
+      "sample_transcript/general_medicine.txt": {
+        "runs": [
+          {
+            "input_tokens": 3317,
+            "output_tokens": 73,
+            "cost_usd": 0.00013931400000000003,
+            "route": "general_medicine",
+            "specialty": "general_medicine",
+            "confidence": 1.0,
+            "needs_review": 0.1,
+            "acuity": 0.17,
+            "latency_s": 0.15404683304950595
+          },
+          {
+            "input_tokens": 3317,
+            "output_tokens": 73,
+            "cost_usd": 0.00013931400000000003,
+            "route": "general_medicine",
+            "specialty": "general_medicine",
+            "confidence": 1.0,
+            "needs_review": 0.1,
+            "acuity": 0.19,
+            "latency_s": 0.1326025000307709
+          },
+          {
+            "input_tokens": 3317,
+            "output_tokens": 73,
+            "cost_usd": 0.00013931400000000003,
+            "route": "general_medicine",
+            "specialty": "general_medicine",
+            "confidence": 1.0,
+            "needs_review": 0.1,
+            "acuity": 0.18,
+            "latency_s": 0.14563495805487037
+          },
+          {
+            "input_tokens": 3317,
+            "output_tokens": 73,
+            "cost_usd": 0.00013931400000000003,
+            "route": "general_medicine",
+            "specialty": "general_medicine",
+            "confidence": 1.0,
+            "needs_review": 0.1,
+            "acuity": 0.19,
+            "latency_s": 0.13239570800215006
+          },
+          {
+            "input_tokens": 3317,
+            "output_tokens": 73,
+            "cost_usd": 0.00013931400000000003,
+            "route": "general_medicine",
+            "specialty": "general_medicine",
+            "confidence": 1.0,
+            "needs_review": 0.1,
+            "acuity": 0.17,
+            "latency_s": 0.12388066598214209
+          }
+        ],
+        "summary": {
+          "expected": "general_medicine",
+          "majority_route": "general_medicine",
+          "accuracy": 1.0,
+          "consistency": 1.0,
+          "mean_confidence": 1.0,
+          "mean_needs_review": 0.1,
+          "mean_acuity": 0.18,
+          "median_latency_s": 0.1326025000307709,
+          "mean_input_tokens": 3317,
+          "mean_output_tokens": 73,
+          "mean_cost_usd": 0.00013931400000000003,
+          "routes": {
+            "general_medicine": 5
+          }
+        }
+      },
+      "transcripts/teen_visit.txt": {
+        "runs": [
+          {
+            "input_tokens": 703,
+            "output_tokens": 72,
+            "cost_usd": 2.9526000000000005e-05,
+            "route": "human_review",
+            "specialty": "pediatrics",
+            "confidence": 0.48,
+            "needs_review": 0.06,
+            "acuity": 0.06,
+            "latency_s": 0.11873612506315112
+          },
+          {
+            "input_tokens": 703,
+            "output_tokens": 72,
+            "cost_usd": 2.9526000000000005e-05,
+            "route": "pediatrics",
+            "specialty": "pediatrics",
+            "confidence": 0.62,
+            "needs_review": 0.06,
+            "acuity": 0.06,
+            "latency_s": 0.11862045805901289
+          },
+          {
+            "input_tokens": 703,
+            "output_tokens": 72,
+            "cost_usd": 2.9526000000000005e-05,
+            "route": "human_review",
+            "specialty": "pediatrics",
+            "confidence": 0.54,
+            "needs_review": 0.06,
+            "acuity": 0.07,
+            "latency_s": 0.12377545796334743
+          },
+          {
+            "input_tokens": 703,
+            "output_tokens": 72,
+            "cost_usd": 2.9526000000000005e-05,
+            "route": "human_review",
+            "specialty": "pediatrics",
+            "confidence": 0.54,
+            "needs_review": 0.06,
+            "acuity": 0.07,
+            "latency_s": 0.15880412491969764
+          },
+          {
+            "input_tokens": 703,
+            "output_tokens": 72,
+            "cost_usd": 2.9526000000000005e-05,
+            "route": "human_review",
+            "specialty": "pediatrics",
+            "confidence": 0.54,
+            "needs_review": 0.05,
+            "acuity": 0.07,
+            "latency_s": 0.13006108300760388
+          }
+        ],
+        "summary": {
+          "expected": "pediatrics",
+          "majority_route": "human_review",
+          "accuracy": 0.2,
+          "consistency": 0.8,
+          "mean_confidence": 0.544,
+          "mean_needs_review": 0.057999999999999996,
+          "mean_acuity": 0.066,
+          "median_latency_s": 0.12377545796334743,
+          "mean_input_tokens": 703,
+          "mean_output_tokens": 72,
+          "mean_cost_usd": 2.9526000000000005e-05,
+          "routes": {
+            "human_review": 4,
+            "pediatrics": 1
+          }
+        }
+      },
+      "transcripts/truncated_visit.txt": {
+        "runs": [
+          {
+            "input_tokens": 486,
+            "output_tokens": 73,
+            "cost_usd": 2.0412000000000004e-05,
+            "route": "human_review",
+            "specialty": "general_medicine",
+            "confidence": 1.0,
+            "needs_review": 0.92,
+            "acuity": 0.19,
+            "latency_s": 0.12952545890584588
+          },
+          {
+            "input_tokens": 486,
+            "output_tokens": 73,
+            "cost_usd": 2.0412000000000004e-05,
+            "route": "human_review",
+            "specialty": "general_medicine",
+            "confidence": 1.0,
+            "needs_review": 0.91,
+            "acuity": 0.19,
+            "latency_s": 0.13092525000683963
+          },
+          {
+            "input_tokens": 486,
+            "output_tokens": 73,
+            "cost_usd": 2.0412000000000004e-05,
+            "route": "human_review",
+            "specialty": "general_medicine",
+            "confidence": 1.0,
+            "needs_review": 0.92,
+            "acuity": 0.17,
+            "latency_s": 0.09901212505064905
+          },
+          {
+            "input_tokens": 486,
+            "output_tokens": 73,
+            "cost_usd": 2.0412000000000004e-05,
+            "route": "human_review",
+            "specialty": "general_medicine",
+            "confidence": 1.0,
+            "needs_review": 0.93,
+            "acuity": 0.19,
+            "latency_s": 0.1331732498947531
+          },
+          {
+            "input_tokens": 486,
+            "output_tokens": 73,
+            "cost_usd": 2.0412000000000004e-05,
+            "route": "human_review",
+            "specialty": "general_medicine",
+            "confidence": 1.0,
+            "needs_review": 0.92,
+            "acuity": 0.16,
+            "latency_s": 0.1613184588495642
+          }
+        ],
+        "summary": {
+          "expected": "human_review",
+          "majority_route": "human_review",
+          "accuracy": 1.0,
+          "consistency": 1.0,
+          "mean_confidence": 1.0,
+          "mean_needs_review": 0.92,
+          "mean_acuity": 0.18,
+          "median_latency_s": 0.13092525000683963,
+          "mean_input_tokens": 486,
+          "mean_output_tokens": 73,
+          "mean_cost_usd": 2.0412000000000004e-05,
+          "routes": {
+            "human_review": 5
+          }
+        }
+      }
+    }
+  }
+}

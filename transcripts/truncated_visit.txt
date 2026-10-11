@@ -1,0 +1,2 @@
+Doctor: Good afternoon. What can I do for you today?
+Patient: Well, it's been a rough couple of weeks. I've been getting this

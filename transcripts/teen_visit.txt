@@ -1,0 +1,11 @@
+Doctor: Come on in. You're here on your own today?
+Patient: Yeah, my mum's at work. I'm 17, I turn 18 in March.
+Doctor: That's fine. What's going on?
+Patient: I've had a sore knee for about three weeks. It started after football practice. It's worse going down stairs.
+Doctor: Any swelling, locking, or giving way?
+Patient: A bit of swelling the first few days. No locking. It feels a bit unstable sometimes.
+Doctor: Let me examine it. There's mild tenderness over the medial joint line, no effusion today, full range of motion, Lachman and McMurray are negative.
+Doctor: Your weight is 68 kilograms. This looks like a patellofemoral pain pattern rather than a ligament injury.
+Doctor: I'd like you to rest from running for two weeks, ice it after activity, and I'll refer you to physio for quad strengthening. Ibuprofen 400 milligrams with food if you need it.
+Doctor: If it locks or gives way, come straight back and we'll image it.
+Patient: Okay, thanks.

@@ -16,7 +16,7 @@ generates a SOAP note using tools. You can get the context on using Jev instead 
 5. **Decision vs generation** – the triage step can be run by an OpenAI LLM
    *or* by [Jev](https://docs.typesafe.ai), a decision model that returns
    typed answers with a confidence score. The rest of the graph is identical,
-   so you can compare them directly.
+   so you can compare them directly, and a benchmark section does.
 
 ## The problem we are solving
 
@@ -98,21 +98,26 @@ log instead of overwriting it.
 Both triage nodes read `state["transcript"]` and write the same keys. That is
 what makes them swappable.
 
-**Option A, an LLM with structured output** (`agents/triage.py`). We describe
-the routing rules in a prompt and ask gpt-4o-mini to fill in a Pydantic
-model. The model writes a reason and a context summary as free text.
+**Option A, an LLM as a judge** (`agents/triage.py`). We describe the
+routing rules in a prompt and ask gpt-4o-mini to fill in a Pydantic model
+with the same three answers Jev gives, plus a confidence it reports about
+itself, plus a free-text reason and context summary.
 
 ```python
 class TriageDecision(BaseModel):
     specialty: Literal["pediatrics", "general_medicine"]
+    confidence: float            # self-reported, 0..1
+    needs_review: bool
+    acuity: Literal[0, 1, 2]
     reason: str
     context: str
 
 decision = llm.with_structured_output(TriageDecision).invoke([...])
 ```
 
-This works, but notice what we *don't* get: any measure of how sure the model
-is. We fill `triage_confidence` with `1.0` so the router behaves as before.
+This works, but the confidence is whatever the model *says* it is. A
+generative model has no mechanism that ties that number to how often it is
+right. The benchmark below shows what that looks like in practice.
 
 **Option B, a decision model** (`agents/triage_jev.py`). Jev does not
 generate text. You give it text plus a set of typed questions, and it returns
@@ -144,10 +149,12 @@ Now the router has numbers to work with.
 | | OpenAI LLM | Jev |
 |---|---|---|
 | Returns | JSON it was asked to write | Typed answers with probabilities and a 0–1 confidence |
-| Confidence | None, the router must trust it | Calibrated, the router can gate on it |
+| Confidence | Self-reported in the JSON, not calibrated | A probability from the model, calibrated |
 | Several questions | One prompt, one JSON blob | One request, any number of Choice / Noul / Score |
 | Writes text | Yes (reason, summary) | No, decisions only |
 | Role in this graph | Decide *and* explain | Decide. The specialist LLM still writes the note |
+| Latency (measured) | about 1.2 s | about 0.13 s |
+| Cost per triage (measured) | about $0.00020 | about $0.000045 |
 
 The lesson: **use a decision model to decide and a generative model to write.**
 TypeSafe documents this as
@@ -306,12 +313,125 @@ nested spans under your project.
 python3 visualize.py --triage jev     # writes graph_jev.mmd and graph_jev.png
 ```
 
+## LLM as a Judge vs Jev
+
+Both backends answer the same three questions, so we can measure them head to
+head. `benchmark_triage.py` runs **only the triage node** (no note writing)
+on six transcripts, five times each per backend, and checks whether the
+router would take the expected branch.
+
+```bash
+python3 benchmark_triage.py --runs 5     # writes benchmark_results.md / .json
+```
+
+The six transcripts, and the branch the router should take:
+
+| Transcript | What it is | Expected branch |
+|---|---|---|
+| `pediatrics_visit.txt` | 6-year-old with an ear infection, mother present | pediatrics |
+| `general_medicine_visit.txt` | Adult with headaches and high blood pressure | general_medicine |
+| `sample_transcript/general_medicine.txt` | Long real-style adult visit, joint pain | general_medicine |
+| `ambiguous_note.txt` | Receptionist moving an appointment. Not a visit | human_review |
+| `teen_visit.txt` | 17-year-old alone with a sports knee injury. Borderline | pediatrics |
+| `truncated_visit.txt` | Two lines, cut off mid-sentence | human_review |
+
+### Results (gpt-4o-mini vs jev-latest, 5 runs each, 2026-10-11)
+
+| Backend | Routing accuracy | Consistency | Median latency | p95 latency | Mean tokens (in+out) | Cost per triage | Cost per 1,000 triages |
+|---|---|---|---|---|---|---|---|
+| LLM as a judge | 87% | 97% | 1.17 s | 1.62 s | 1019+84 | $0.000203 | $0.203 |
+| Jev | 87% | 97% | 0.13 s | 0.21 s | 1082+73 | $0.000045 | $0.045 |
+
+Per transcript (mean over 5 runs):
+
+| Transcript | Expected | Backend | Majority route | Accuracy | Confidence | needs_review | Acuity | Cost |
+|---|---|---|---|---|---|---|---|---|
+| pediatrics_visit | pediatrics | LLM | pediatrics | 100% | 1.00 | 0.00 | 1.0 | $0.000156 |
+| | | Jev | pediatrics | 100% | 1.00 | 0.06 | 1.0 | $0.000030 |
+| general_medicine_visit | general_medicine | LLM | general_medicine | 100% | 1.00 | 0.00 | 1.0 | $0.000153 |
+| | | Jev | general_medicine | 100% | 1.00 | 0.05 | 0.1 | $0.000029 |
+| general_medicine (long) | general_medicine | LLM | general_medicine | 100% | 1.00 | 0.00 | 1.0 | $0.000535 |
+| | | Jev | general_medicine | 100% | 1.00 | 0.10 | 0.2 | $0.000139 |
+| ambiguous_note | human_review | LLM | human_review | 100% | 1.00 | 1.00 | 0.0 | $0.000117 |
+| | | Jev | human_review | 100% | 1.00 | 0.96 | 0.0 | $0.000024 |
+| teen_visit | pediatrics | LLM | pediatrics | 100% | 0.90 | 0.00 | 0.0 | $0.000152 |
+| | | Jev | **human_review** | 20% | **0.54** | 0.06 | 0.1 | $0.000030 |
+| truncated_visit | human_review | LLM | **general_medicine** | 20% | 0.90 | 0.20 | 0.6 | $0.000105 |
+| | | Jev | human_review | 100% | 1.00 | 0.92 | 0.2 | $0.000020 |
+
+### What the numbers say
+
+- **On clear-cut transcripts both are perfect.** The four straightforward
+  cases route correctly every time with either backend.
+- **Jev is about 9x faster.** Median 0.13 s against 1.17 s. It is not
+  generating tokens, just scoring the questions, and all three questions go
+  in one request.
+- **The LLM's confidence is not information.** It reported 1.00 on the easy
+  cases and exactly 0.90 on both hard cases, including the one it got wrong.
+  The number never moved with the actual difficulty, so the router cannot
+  use it. Jev's confidence fell to around 0.5 on the borderline teenager and
+  its `needs_review` jumped from under 0.10 to 0.92 on the fragment.
+- **The LLM wrote up a two-line fragment as a visit.** On `truncated_visit`
+  it chose general medicine at 0.90 confidence in four of five runs and
+  would have handed the specialist a transcript with no complaint in it.
+  Jev flagged it for review five times out of five.
+- **Jev's "miss" is an abstention.** The 17-year-old seen without a parent,
+  with an adult-style sports injury, sits right on the
+  pediatrics / general-medicine boundary. Jev's probabilities split roughly
+  50/50, hovering around the 0.6 threshold, and the router sent it to a
+  human in four runs of five. The LLM picked pediatrics and was scored
+  correct, but it gave that answer with the same 0.90 it gave the fragment.
+  Which behaviour you want depends on the cost of a wrong note versus the
+  cost of a human look. In a clinical setting, abstaining on a coin flip is
+  usually the right call.
+
+### Cost
+
+List prices on 2026-10-11: gpt-4o-mini is $0.15 per million input tokens
+and $0.60 per million output tokens. Jev is $0.042 per million input tokens
+and output tokens are free.
+
+| | LLM as a judge | Jev |
+|---|---|---|
+| Tokens per triage (mean) | 1019 in + 84 out | 1082 in + 73 out |
+| Cost per triage | $0.000203 | $0.000045 |
+| Cost per 1,000 triages | $0.20 | $0.045 |
+| Cost per 1,000,000 triages | $203 | $45 |
+
+Both backends read roughly the same number of input tokens, because the
+transcript dominates and Jev's question text is about as long as the LLM's
+prompt. The gap comes from the per-token price and from Jev's output being
+free. Jev works out about **4.5x cheaper per decision**.
+
+To put triage in context, a whole run (triage plus the specialist writing
+the note with tool calls) measured on the two short samples:
+
+| | LLM triage | Jev triage |
+|---|---|---|
+| OpenAI tokens for the whole run | about 2,050 in + 580 out | about 1,390 in + 500 out |
+| OpenAI cost | about $0.00066 | about $0.00051 |
+| Jev cost | – | about $0.00003 |
+| **Total per run** | **about $0.00066** | **about $0.00054** |
+
+Writing the note is most of the bill either way. Moving the decision to Jev
+removes the triage prompt from OpenAI's meter and trims a full run by
+roughly a fifth. At a million visits a year that is around $120 saved on
+triage alone, which is modest. The larger savings come from what the
+confidence enables: not paying for a note on input that should never have
+reached the specialist, and not paying a human to fix a note written from
+a fragment.
+
+Your numbers will differ a little run to run. Re-run the script and compare
+against `benchmark_results.md`.
+
 ## Project layout
 
 ```
 main.py                     Builds the graph, picks the triage backend, runs one transcript
 langgraph.json              Registers both graphs for LangGraph Studio
 visualize.py                Exports the graph as Mermaid / PNG
+benchmark_triage.py         LLM-as-a-judge vs Jev triage benchmark
+benchmark_results.md        Latest benchmark output (also .json)
 pyproject.toml              Package metadata
 LICENSE                     MIT license
 agents/
@@ -327,14 +447,15 @@ agents/
   generalmed_agent.py       General medicine SOAP note writer
 tools/
   base.py                   calculate_bmi, calculate_pediatric_dose, save_note
-transcripts/                Sample inputs: pediatric, adult, and a non-clinical call
+transcripts/                Sample inputs: pediatric, adult, teen, non-clinical, truncated
 notes/                      Generated notes land here
 ```
 
 ## Exercises
 
-1. **Lower the bar.** Set `CONFIDENCE_THRESHOLD` to 0.95 in `agents/router.py`
-   and run the samples with Jev. Which transcripts now go to human review?
+1. **Move the bar.** Set `CONFIDENCE_THRESHOLD` to 0.45 in `agents/router.py`
+   and re-run the benchmark. Jev now routes the teenager to pediatrics. Then
+   set it to 0.95 and see what happens to the LLM backend's 0.90 answers.
 2. **Add a question.** Add a `Noul` to `TRIAGE_QUESTIONS` asking whether a
    medication was prescribed, and surface it in the specialist prompt. It
    costs no extra API call.
