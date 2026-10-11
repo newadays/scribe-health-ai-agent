@@ -1,13 +1,9 @@
 # Agentic Medical Scribe
 
-A hands-on tutorial for building an **agentic workflow** with
-[LangGraph](https://github.com/langchain-ai/langgraph). The example is a
-medical scribe: you give it the transcript of a doctor–patient conversation,
-and it produces a clinical SOAP note.
-
-Along the way you will see the four building blocks that show up in almost
-every agentic system, and one idea that is easy to miss: **deciding and
-writing are different jobs, and you can use different models for each.**
+A small, runnable tutorial showing how to build an agentic medical scribe with
+[LangGraph](https://github.com/langchain-ai/langgraph). It takes the text
+transcript of a clinical encounter, routes it to a specialty agent, and
+generates a SOAP note using tools. You can get the context on using Jev instead of an LLM as a Judge in my article [here](https://medium.com/@gbenga-awodokun/building-clinical-ai-agents-with-langchain-and-jev-decision-healthcare-trustworthy-ai-lab-v2-1b81e271f1c9)
 
 ![Agentic flow](agentic_medical_scribe.png)
 
