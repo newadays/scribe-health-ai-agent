@@ -20,6 +20,8 @@ def generalmed_agent(state: ScribeState) -> dict:
     - If height and weight are mentioned, use the calculate_bmi
       tool and include the BMI in the Objective section.
     - Capture vitals, medications, and follow-up plans.
+    - If triage flagged the visit as urgent or needing prompt
+      follow-up, reflect that in the Plan.
 
     When the note is complete, call save_note to store it,
     then reply with the final note text.

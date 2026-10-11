@@ -21,6 +21,8 @@ def pediatrics_agent(state: ScribeState) -> dict:
     - If a weight-based medication is discussed, use the
       calculate_pediatric_dose tool to compute the dose.
     - Note immunization or growth concerns if mentioned.
+    - If triage flagged the visit as urgent or needing prompt
+      follow-up, reflect that in the Plan.
 
     When the note is complete, call save_note to store it,
     then reply with the final note text.

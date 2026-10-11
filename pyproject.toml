@@ -1,0 +1,22 @@
+[project]
+name = "scribe-health-ai-agent"
+version = "0.1.0"
+description = "Agentic medical scribe tutorial: LangGraph with OpenAI or Jev for triage decisions"
+requires-python = ">=3.11"
+license = "MIT"
+license-files = ["LICENSE"]
+dependencies = [
+    "langgraph",
+    "langchain-core",
+    "langchain-openai",
+    "python-dotenv",
+    "pydantic",
+    "typesafe-sdk",
+]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["agents", "tools"]

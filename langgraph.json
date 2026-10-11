@@ -1,0 +1,8 @@
+{
+  "dependencies": ["."],
+  "graphs": {
+    "scribe_llm": "./main.py:scribe_llm",
+    "scribe_jev": "./main.py:scribe_jev"
+  },
+  "env": ".env"
+}
